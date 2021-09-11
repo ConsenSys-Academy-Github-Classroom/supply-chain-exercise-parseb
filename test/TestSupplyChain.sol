@@ -15,32 +15,12 @@ contract TestSupplyChain {
         
 
         uint sku1 = supplyCh.skuCount();
-
-        // bytes16 beforeBuyState = supplyCh.items()[sku].state;
-        // bytes[] memory beforeItemState = supplyCh.items()[sku];
-
-        // supplyCh.buyItem(sku-1);
-
-        // // bytes16 afterBuyState = supplyCh.items()[sku].state;
-        // // bytes[] memory afterItemState= supplyCh.items()[sku];
-
-        // Assert.notequal(beforeBuyState, afterBuyState, "The state of the iteam should change after buy.");
-
-
-
         bool successAdd = supplyCh.addItem("Testing in Solidity for Dummies - Book", 1);
-
         (string memory name, uint sku, uint price, uint state, address seller, address buyer) = supplyCh.fetchItem(sku1+1);
         address buyerBefore = buyer;
+
         Assert.isTrue(successAdd, "Adding item should return true");
         Assert.isZero(buyer, "Buyer address should be 0xdefault before buy.");
-        
-        //supplyCh.buyItem(sku1+4);
-        (name, sku, price, state, seller, buyer) = supplyCh.fetchItem(sku1+1);
-        address afterItemBought = msg.sender;
-        
-        // Assert.notequal(buyerBefore, afterItemBought, "Buyer address should be stored and not default after buy.");
-
         
     }
 
