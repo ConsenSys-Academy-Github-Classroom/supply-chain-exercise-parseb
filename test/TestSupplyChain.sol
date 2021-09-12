@@ -11,22 +11,29 @@ contract TestSupplyChain {
 
     // buyItem
     SupplyChain supplyCh = SupplyChain(DeployedAddresses.SupplyChain());
-    function testBuyStateCheck() public {
-        
 
-        uint sku1 = supplyCh.skuCount();
-        bool successAdd = supplyCh.addItem("Testing in Solidity for Dummies - Book", 1);
-        (string memory name, uint sku, uint price, uint state, address seller, address buyer) = supplyCh.fetchItem(sku1+1);
-        address buyerBefore = buyer;
 
-        Assert.isTrue(successAdd, "Adding item should return true");
-        Assert.isZero(buyer, "Buyer address should be 0xdefault before buy.");
+    function createItem(string memory _name, uint _price) public returns(bool success) {
+        success= supplyCh.addItem(_name,_price);
+    }
+
+     // test for failure if user does not send enough funds
+    
+    function downBadUser() {
         
     }
 
-    // test for failure if user does not send enough funds
-    
     // test for purchasing an item that is not for Sale
+    function notForSale(uint8 _sku) {
+        // create item
+        // createItem("Paperback: Algo-Trade Yourself", 33 );
+        // buy it
+        //supplyCh.items[1].state = 3;
+        // supplyCh.buyItem(1)
+        // buy it again (no validation or need for)
+        // "Not for Sale"
+        
+    }
 
     // shipItem
 
@@ -37,5 +44,19 @@ contract TestSupplyChain {
 
     // test calling the function from an address that is not the buyer
     // test calling the function on an item not marked Shipped
+
+
+
+    function testBuyStateCheck() public {
+        uint sku1 = supplyCh.skuCount();
+        bool successAdd = createItem("Testing in Solidity for Dummies - Book", 22);
+        (string memory name, uint sku, uint price, uint state, address seller, address buyer) = supplyCh.fetchItem(sku1+1);
+        address buyerBefore = buyer;
+
+        Assert.isTrue(successAdd, "Adding item should return true");
+        Assert.isZero(buyer, "Buyer address should be 0xdefault before buy.");
+    }
+
+   
 
 }
