@@ -50,8 +50,7 @@ contract TestSupplyChain {
     function testBuyStateCheck() public {
         uint sku1 = supplyCh.skuCount();
         bool successAdd = createItem("Testing in Solidity for Dummies - Book", 22);
-        (string memory name, uint sku, uint price, uint state, address seller, address buyer) = supplyCh.fetchItem(sku1+1);
-        address buyerBefore = buyer;
+        (,,,,, address buyer) = supplyCh.fetchItem(sku1+1);
 
         Assert.isTrue(successAdd, "Adding item should return true");
         Assert.isZero(buyer, "Buyer address should be 0xdefault before buy.");
