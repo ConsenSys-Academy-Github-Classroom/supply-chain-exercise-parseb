@@ -19,21 +19,21 @@ contract TestSupplyChain {
 
      // test for failure if user does not send enough funds
     
-    function downBadUser() {
+    // function downBadUser() {
         
-    }
+    // }
 
-    // test for purchasing an item that is not for Sale
-    function notForSale(uint8 _sku) {
-        // create item
-        // createItem("Paperback: Algo-Trade Yourself", 33 );
-        // buy it
-        //supplyCh.items[1].state = 3;
-        // supplyCh.buyItem(1)
-        // buy it again (no validation or need for)
-        // "Not for Sale"
+    // // test for purchasing an item that is not for Sale
+    // function notForSale(uint8 _sku) {
+    //     // create item
+    //     // createItem("Paperback: Algo-Trade Yourself", 33 );
+    //     // buy it
+    //     //supplyCh.items[1].state = 3;
+    //     // supplyCh.buyItem(1)
+    //     // buy it again (no validation or need for)
+    //     // "Not for Sale"
         
-    }
+    // }
 
     // shipItem
 
