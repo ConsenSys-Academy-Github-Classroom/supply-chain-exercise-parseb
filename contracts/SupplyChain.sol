@@ -141,10 +141,14 @@ contract SupplyChain {
 
   function buyItem(uint sku) public forSale(sku) paidEnough(items[sku].price) payable checkValue(sku) {
     Item storage item= items[sku];
-    item.seller.transfer(item.price);
     item.buyer= msg.sender;
     item.state = State.Sold;
 
+    (bool success, ) = item.seller.call.value(item.price)("");
+    //item.seller.transfer(item.price);
+    if (! success) { 
+      revert("Seller payment failed.");
+      }
     emit LogSold(sku);
   }
 
